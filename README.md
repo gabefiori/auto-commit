@@ -14,7 +14,7 @@ Flags:
         --force    | Don’t fail if the generated commit message is invalid (e.g., longer than 50 characters)
 ```
 
-Examples:
+### Examples:
 To test the commit process without making any changes, run:
 ```sh
 $ auto-commit --dry-run
