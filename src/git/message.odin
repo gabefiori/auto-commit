@@ -1,0 +1,4 @@
+package git
+
+MESSAGE_TITLE_LEN :: 50
+MESSAGE_BODY_LEN :: 72
