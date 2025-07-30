@@ -123,22 +123,22 @@ test_changes_create_message :: proc(t: ^testing.T) {
 	}
 
 	for tt in tests {
-		grouped_changes: Changes
-		changes_init(&grouped_changes)
-		defer changes_destroy(&grouped_changes)
+		changes: Changes
+		changes_init(&changes)
+		defer changes_destroy(&changes)
 
 		input_bytes := transmute([]byte)tt.input
 
-		changes_parse(&grouped_changes, input_bytes)
+		changes_parse(&changes, input_bytes)
 
-		message := changes_create_message(&grouped_changes)
+		message := changes_create_message(&changes)
 		defer delete(message)
 
 		testing.expect_value(t, message, tt.expected)
 
 		// Only "Renamed" status entries allocate memory, so they should be freed after each run.
 		// In production code, we don't need to worry about it because an arena is used to allocate the string.
-		for r in grouped_changes[.Renamed] {
+		for r in changes[.Renamed] {
 			delete(r)
 		}
 	}
