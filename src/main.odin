@@ -38,11 +38,11 @@ main :: proc() {
 }
 
 run :: proc(options: Options, arena_allocator: mem.Allocator) -> os.Error {
-	diff_result := git.diff(arena_allocator) or_return
+	status_output := git.status(arena_allocator) or_return
 
 	changes: Changes
 	changes_init(&changes, arena_allocator)
-	changes_parse(&changes, diff_result, arena_allocator)
+	changes_parse(&changes, status_output, arena_allocator)
 
 	message := changes_create_message(&changes, arena_allocator)
 

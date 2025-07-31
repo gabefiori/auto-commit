@@ -4,7 +4,7 @@ import os "core:os/os2"
 
 DEFAULT_GIT_ERROR :: os.General_Error.Invalid_Command
 
-diff :: proc(allocator := context.allocator) -> (out: []byte, err: os.Error) {
+status :: proc(allocator := context.allocator) -> (out: []byte, err: os.Error) {
 	reader, writer := os.pipe() or_return
 	defer os.close(reader)
 
