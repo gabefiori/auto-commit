@@ -7,7 +7,7 @@ import "src:git"
 
 GROUP_SEPARATOR :: ". "
 CHANGE_SEPARATOR :: ", "
-CHANGE_FINAL_SEPARATOR :: " and "
+CHANGE_SEPARATOR_LAST :: " and "
 RENAMED_SEPATOR :: " to "
 
 Changes :: [git.Status_Code][dynamic]string
@@ -84,7 +84,7 @@ changes_create_message :: proc(changes: ^Changes, allocator := context.allocator
 				strings.write_string(&builder, change)
 			}
 
-			strings.write_string(&builder, CHANGE_FINAL_SEPARATOR)
+			strings.write_string(&builder, CHANGE_SEPARATOR_LAST)
 			strings.write_string(&builder, status_changes[status_changes_len - 1])
 		}
 	}
